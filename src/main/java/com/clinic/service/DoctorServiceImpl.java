@@ -1,11 +1,12 @@
 package com.clinic.service;
 
 import com.clinic.dao.DoctorDAO;
+import com.clinic.exceptions.DublicateEmailException;
 import com.clinic.model.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -20,10 +21,15 @@ public class DoctorServiceImpl implements DoctorService {
         return this.doctorDAO.getDoctorById(id);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void addDoctor(Doctor doctor) {
-        this.doctorDAO.addDoctor(doctor);
+    public void addDoctor(Doctor doctor) throws DublicateEmailException{
+        try {
+            this.doctorDAO.addDoctor(doctor);
+        }
+        catch(Exception e) {
+            throw new DublicateEmailException();
+        }
     }
 
     @Transactional

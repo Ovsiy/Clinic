@@ -24,7 +24,7 @@ public class Doctor {
     @Size(min=2, max=255)
     private String surname;
 
-    @Column(name = "email", length = 255, nullable = false)
+    @Column(name = "email", length = 255, nullable = false, unique = true)
     @Email
     @Size(min=2, max=255)
     private String email;

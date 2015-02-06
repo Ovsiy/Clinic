@@ -1,5 +1,6 @@
 package com.clinic;
 
+import com.clinic.exceptions.DublicateEmailException;
 import com.clinic.model.Doctor;
 import com.clinic.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 
 @Controller
 public class IndexController {
@@ -58,7 +60,13 @@ public class IndexController {
         }
 
         if(doctor.getId() == 0){
-            this.doctorService.addDoctor(doctor);
+            try {
+                this.doctorService.addDoctor(doctor);
+            } catch (DublicateEmailException e) {
+                bindingResult.rejectValue("email", "", e.getMessage());
+                return "addDoctor";
+            }
+
         }else{
             this.doctorService.updateDoctor(doctor);
         }

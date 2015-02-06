@@ -17,6 +17,7 @@
             <th width="80">ID</th>
             <th width="120">Name</th>
             <th width="120">Surname</th>
+            <th width="120">Email</th>
             <th width="120">Created</th>
             <th width="120">Updated</th>
             <th width="60">Edit</th>
@@ -27,6 +28,7 @@
                 <td><a href="<c:url value='/doctor/${doctor.id}/show' />" >${doctor.name}</a></td>
                 <td>${doctor.name}</td>
                 <td>${doctor.surname}</td>
+                <td>${doctor.email}</td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd H:m"
                                     value="${doctor.created_at}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd H:m"

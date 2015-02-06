@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.sql.SQLException;
 
 @Controller
-public class IndexController {
+public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;

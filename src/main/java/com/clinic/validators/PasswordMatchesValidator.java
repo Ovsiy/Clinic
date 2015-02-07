@@ -1,6 +1,6 @@
 package com.clinic.validators;
 
-import com.clinic.model.User;
+import com.clinic.forms.RegistrationForm;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -13,7 +13,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
-        User user = (User) o;
+        RegistrationForm user = (RegistrationForm) o;
 
         return user.getPassword().equals(user.getPassword_again());
     }

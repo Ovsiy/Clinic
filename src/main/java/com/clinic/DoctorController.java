@@ -53,7 +53,6 @@ public class DoctorController {
     public String addDoctor(@Valid @ModelAttribute("doctor") Doctor doctor,
                             BindingResult bindingResult){
 
-        System.out.println(doctor.getCreated_at());
         if(bindingResult.hasErrors()) {
             return "addDoctor";
         }

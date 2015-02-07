@@ -1,6 +1,6 @@
 package com.clinic;
 
-import com.clinic.model.User;
+import com.clinic.forms.RegistrationForm;
 import com.clinic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,13 +24,13 @@ public class RegistrationController {
 
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/register");
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new RegistrationForm());
 
         return mav;
     }
 
     @RequestMapping(value= "/register", method = RequestMethod.POST)
-    public String addDoctor(@Valid @ModelAttribute("user") User user,
+    public String addDoctor(@Valid @ModelAttribute("user") RegistrationForm user,
                             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -41,5 +41,4 @@ public class RegistrationController {
 
         return "redirect:/";
     }
-
 }

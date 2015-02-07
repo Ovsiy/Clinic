@@ -1,12 +1,9 @@
 package com.clinic.model;
 
-import com.clinic.validators.PasswordMatches;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
-@PasswordMatches
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -19,8 +16,14 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @Transient
-    private String password_again;
+//    @Transient
+//    private String password_again;
+
+//    @AssertTrue(message = "fuuuck work bitch!!!")
+//    @Transient
+//    public boolean isValid() {
+//        return this.password.equals(this.password_again);
+//    }
 
     public int getId() {
         return id;
@@ -44,13 +47,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPassword_again() {
-        return password_again;
-    }
-
-    public void setPassword_again(String password_again) {
-        this.password_again = password_again;
     }
 }

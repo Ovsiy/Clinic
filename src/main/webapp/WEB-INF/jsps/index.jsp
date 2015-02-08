@@ -1,14 +1,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%--<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
-<!DOCTYPE html>
-<head>
-    <title></title>
-</head>
-<body>
+<tiles:insertDefinition name="defaultTemplate">
+<tiles:putAttribute name="body">
+
 <h3>Doctors List</h3>
 <a href="<c:url value='/doctor/add' />" >Add Doctor</a>
 <c:if test="${!empty listDoctors}">
@@ -40,5 +38,5 @@
     </table>
 </c:if>
 
-</body>
-</html>
+</tiles:putAttribute>
+</tiles:insertDefinition>

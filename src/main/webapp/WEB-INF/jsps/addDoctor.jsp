@@ -7,6 +7,7 @@
 <html>
 <head>
     <title></title>
+    <script src="/webjars/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
     <form:form action="/doctor/add" commandName="doctor">

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -31,13 +32,15 @@ public class RegistrationController {
 
     @RequestMapping(value= "/register", method = RequestMethod.POST)
     public String addDoctor(@Valid @ModelAttribute("user") RegistrationForm user,
-                            BindingResult bindingResult) {
+                            BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             return "register";
         }
 
         this.userService.addUser(user);
+        redirectAttributes.addFlashAttribute("message", "Wellcome!");
 
         return "redirect:/";
     }

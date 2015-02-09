@@ -6,6 +6,17 @@
 
 <tiles:insertDefinition name="defaultTemplate">
 <tiles:putAttribute name="body">
+
+<c:if test="${not empty message}">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-success">
+                    ${message}
+            </div>
+        </div>
+    </div>
+</c:if>
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Doctors List</h1>

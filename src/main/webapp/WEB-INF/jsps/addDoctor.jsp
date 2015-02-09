@@ -20,6 +20,11 @@
                 <div class="row">
                     <form:form action="/doctor/add" commandName="doctor" role="form">
                         <div class="col-lg-6">
+                            <c:if test="${!empty doctor.name}">
+                                <form:label path="id">ID</form:label>
+                                <form:input path="id" readonly="true" disabled="true" />
+                                <form:hidden path="id" />
+                            </c:if>
                             <div class="form-group">
                                 <c:set var="nameErrors"><form:errors path="name"/></c:set>
                                 <form:label path="name">Name</form:label>

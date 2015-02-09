@@ -2,55 +2,46 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<form:form action="/register" commandName="user">
-    <table>
-        <tr>
-            <td>
-                Email
-            </td>
-            <td>
-                <form:input path="email" />
-            </td>
-            <td>
-                <form:errors path="email" cssClass="error" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Password
-            </td>
-            <td>
-                <form:password path="password" />
-            </td>
-            <td>
-                <form:errors path="password" cssClass="error" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Pass again
-            </td>
-            <td>
-                <form:password path="password_again" />
-            </td>
-            <td>
-                <form:errors cssClass="error" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit"
-                       value="<spring:message text="Register me!"/>" />
-            </td>
-        </tr>
-    </table>
-</form:form>
-</body>
-</html>
+<tiles:insertDefinition name="nonSecuredTemplate">
+<tiles:putAttribute name="body">
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registration Form</h3>
+                </div>
+                <div class="panel-body">
+                    <form:form action="/register" commandName="user" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <form:label path="email">Email</form:label>
+                                <form:input cssClass="form-control" path="email" />
+                                <form:errors path="email" cssClass="text-danger" />
+                            </div>
+
+                            <div class="form-group">
+                                <form:label path="password">Password</form:label>
+                                <form:password cssClass="form-control" path="password" />
+                                <form:errors path="password" cssClass="text-danger" />
+                            </div>
+
+                            <div class="form-group">
+                                <form:label path="password_again">Password again</form:label>
+                                <form:password cssClass="form-control" path="password_again" />
+                                <form:errors cssClass="text-danger" />
+                            </div>
+
+                            <input type="submit" value="Register me!" class="btn btn-lg btn-success btn-block" />
+                        </fieldset>
+                    </form:form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</tiles:putAttribute>
+</tiles:insertDefinition>

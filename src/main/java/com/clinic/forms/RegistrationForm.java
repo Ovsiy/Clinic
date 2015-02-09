@@ -3,12 +3,15 @@ package com.clinic.forms;
 import com.clinic.validators.PasswordMatches;
 import org.hibernate.validator.constraints.Email;
 
+import javax.validation.constraints.Size;
+
 @PasswordMatches
 public class RegistrationForm {
 
-    @Email
+    @Email(message = "Please enter a valid email address")
     private String email;
 
+    @Size(min=2, max=255, message = "Password should be at least 2 symbols long")
     private String password;
 
     private String password_again;

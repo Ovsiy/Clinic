@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -51,7 +52,7 @@ public class DoctorController {
 
     @RequestMapping(value= "/doctor/add", method = RequestMethod.POST)
     public String addDoctor(@Valid @ModelAttribute("doctor") Doctor doctor,
-                            BindingResult bindingResult){
+                            BindingResult bindingResult, final RedirectAttributes redirectAttributes){
 
         if(bindingResult.hasErrors()) {
             return "addDoctor";
@@ -65,8 +66,10 @@ public class DoctorController {
                 return "addDoctor";
             }
 
+            redirectAttributes.addFlashAttribute("message", "The doctor has been successfully created");
         }else{
             this.doctorService.updateDoctor(doctor);
+            redirectAttributes.addFlashAttribute("message", "The doctor has been successfully updated");
         }
 
         return "redirect:/";
@@ -80,9 +83,11 @@ public class DoctorController {
         return mav;
     }
 
-    @RequestMapping("/doctor/{id}/remove")
-    public String removePerson(@PathVariable("id") int id){
+    @RequestMapping(value = "/doctor/{id}/remove")
+    public String removePerson(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
         this.doctorService.removeDoctor(id);
+        redirectAttributes.addFlashAttribute("message", "The doctor has been successfully deleted");
+
         return "redirect:/";
     }
 }

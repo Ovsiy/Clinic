@@ -27,7 +27,7 @@
                 Password
             </td>
             <td>
-                <form:input path="password" />
+                <form:password path="password" />
             </td>
             <td>
                 <form:errors path="password" cssClass="error" />
@@ -38,7 +38,7 @@
                 Pass again
             </td>
             <td>
-                <form:input path="password_again" />
+                <form:password path="password_again" />
             </td>
             <td>
                 <form:errors cssClass="error" />

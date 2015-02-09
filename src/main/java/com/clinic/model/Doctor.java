@@ -17,16 +17,16 @@ public class Doctor {
     private int id;
 
     @Column(name = "name", length = 255)
-    @Size(min=2, max=255)
+    @Size(min=2, max=255, message = "Name should be at least 2 symbols long")
     private String name;
 
     @Column(name = "surname", length = 255, nullable = false)
-    @Size(min=2, max=255)
+    @Size(min=2, max=255, message = "Surname should be at least 2 symbols long")
     private String surname;
 
     @Column(name = "email", length = 255, nullable = false, unique = true)
     @Email
-    @Size(min=2, max=255)
+    @Size(min=2, max=255, message = "Email should be at least 2 symbols long")
     private String email;
 
     @Column(name = "phone", length = 64)

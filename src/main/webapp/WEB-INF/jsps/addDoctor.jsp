@@ -1,78 +1,93 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<html>
-<head>
-    <title></title>
-    <script src="/webjars/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-</head>
-<body>
-    <form:form action="/doctor/add" commandName="doctor">
-        <table>
-            <c:if test="${!empty doctor.name}">
-            <tr>
-                <td>
-                    ID
-                </td>
-                <td>
-                    <form:input path="id" readonly="true"/>
-                </td>
-            </tr>
-            </c:if>
-            <tr>
-                <td>
-                    Name
-                </td>
-                <td>
-                    <form:input path="name" />
-                </td>
-                <td>
-                    <form:errors path="name" cssClass="error" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Surname
-                </td>
-                <td>
-                    <form:input path="surname" />
-                </td>
-                <td>
-                    <form:errors path="surname" cssClass="error" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Phone
-                </td>
-                <td>
-                    <form:input path="phone" />
-                </td>
-                <td>
-                    <form:errors path="phone" cssClass="error" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Email
-                </td>
-                <td>
-                    <form:input path="email" />
-                </td>
-                <td>
-                    <form:errors path="email" cssClass="error" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit"
-                           value="<spring:message text="Add Doctor"/>" />
-                </td>
-            </tr>
-        </table>
-    </form:form>
-</body>
-</html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
+<tiles:insertDefinition name="defaultTemplate">
+<tiles:putAttribute name="body">
+<div class = "row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Add Doctor
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <form:form action="/doctor/add" commandName="doctor" role="form">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <c:set var="nameErrors"><form:errors path="name"/></c:set>
+                                <form:label path="name">Name</form:label>
+                                <form:input path="name" cssClass="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <c:set var="surnameErrors"><form:errors path="surname"/></c:set>
+                                <form:label path="surname">Surname</form:label>
+                                <form:input path="surname" cssClass="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <c:set var="phoneErrors"><form:errors path="phone"/></c:set>
+                                <form:label path="phone">Phone</form:label>
+                                <form:input path="phone" cssClass="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <c:set var="emailErrors"><form:errors path="email"/></c:set>
+                                <form:label path="email">Email</form:label>
+                                <form:input path="email" cssClass="form-control" />
+                            </div>
+
+                            <input type="submit" value="<spring:message text="Add Doctor"/>" />
+                        </div>
+                        <div class="col-lg-6">
+
+                            <c:set var="errors"><form:errors path="*"/></c:set>
+                            <c:if test="${not empty errors}">
+                                <h1>Oops, we have some errors</h1>
+                                <div class="alert alert-danger">
+                                        ${errors}
+                                </div>
+                            </c:if>
+
+                            <%--If we need to display each error--%>
+
+                            <%--<c:if test="${not empty nameErrors}">--%>
+                                <%--<div class="alert alert-danger">--%>
+                                <%--${nameErrors}--%>
+                                <%--</div>--%>
+                            <%--</c:if>--%>
+
+                            <%--<c:if test="${not empty surnameErrors}">--%>
+                                <%--<div class="alert alert-danger">--%>
+                                    <%--${surnameErrors}--%>
+                                <%--</div>--%>
+                            <%--</c:if>--%>
+
+                            <%--<c:if test="${not empty phoneErrors}">--%>
+                                <%--<div class="alert alert-danger">--%>
+                                    <%--${phoneErrors}--%>
+                                <%--</div>--%>
+                            <%--</c:if>--%>
+
+                            <%--<c:if test="${not empty emailErrors}">--%>
+                                <%--<div class="alert alert-danger">--%>
+                                    <%--${emailErrors}--%>
+                                <%--</div>--%>
+                            <%--</c:if>--%>
+                        </div>
+                </form:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</tiles:putAttribute>
+</tiles:insertDefinition>

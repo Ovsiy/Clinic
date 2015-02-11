@@ -21,9 +21,8 @@ public class User {
     @Column(name="enabled", nullable = false)
     private boolean enabled;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade=CascadeType.ALL)
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
-
 
     //    @Transient
 //    private String password_again;
@@ -72,5 +71,16 @@ public class User {
 
     public void setUserRole(Set<UserRole> userRole) {
         this.userRole = userRole;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", userRole=" + userRole +
+                '}';
     }
 }

@@ -7,6 +7,17 @@ import javax.persistence.*;
                 columnNames = { "role", "email" }))
 public class UserRole {
 
+    public static String ROLE_USER = "ROLE_USER";
+    public static String ROLE_ADMIN = "ROLE_ADMIN";
+
+    public UserRole() {
+    }
+
+    public UserRole(User user, String role) {
+        this.user = user;
+        this.role = role;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "user_role_id")
@@ -41,5 +52,14 @@ public class UserRole {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "userRoleId=" + userRoleId +
+                ", role='" + role + '\'' +
+                ", user=" + user.getEmail() +
+                '}';
     }
 }

@@ -3,15 +3,22 @@ package com.clinic.service;
 import com.clinic.dao.UserDAO;
 import com.clinic.forms.RegistrationForm;
 import com.clinic.model.User;
+import com.clinic.model.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+//@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
@@ -27,6 +34,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setEmail(userForm.getEmail());
         user.setPassword(password_encoder.encode(userForm.getPassword()));
         user.setEnabled(true);
+
+        Set<UserRole> userRoles = new HashSet<UserRole>();
+        userRoles.add(new UserRole(user, UserRole.ROLE_ADMIN));
+        userRoles.add(new UserRole(user, UserRole.ROLE_USER));
+
+        user.setUserRole(userRoles);
+        System.out.println(user.getUserRole());
 
         this.userDAO.addUser(user);
     }
@@ -45,7 +59,34 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Transactional(readOnly=true)
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userDAO.findUserByEmail(s);
+    public UserDetails loadUserByUsername(String s) {
+
+        try {
+            User user = userDAO.findUserByEmail(s);
+
+            return new org.springframework.security.core.userdetails.User(
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.isEnabled(),
+                    true,
+                    true,
+                    true,
+                    buildUserAuthority(user.getUserRole())
+            );
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("Can't find the user");
+        }
+    }
+
+    private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+
+        Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+
+        // Build user's authorities
+        for (UserRole userRole : userRoles) {
+            setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+        }
+
+        return new ArrayList<GrantedAuthority>(setAuths);
     }
 }

@@ -77,6 +77,8 @@
 
     <tx:annotation-driven transaction-manager="txManager"/>
 
+    <bean id="customUserDetailsService" class="com.clinic.service.UserServiceImpl"/>
+
     <bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager"/>
 
     <bean id="password_encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
@@ -85,20 +87,26 @@
 
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
-    <!--<security:http auto-config="true" use-expressions="true">-->
-        <!--<security:intercept-url pattern="/success.htm" access="isAuthenticated()"/>-->
-        <!--<security:intercept-url pattern="/admin.htm" access="hasRole('ROLE_ADMIN')"/>-->
-        <!--<security:intercept-url pattern="/user-search.htm" access="hasRole('ROLE_USER')"/>-->
-        <!--<security:form-login login-page="/index.htm" default-target-url="/success.htm"-->
-                             <!--authentication-failure-url="/access-denied.htm"/>-->
-        <!--<security:logout logout-success-url="/" delete-cookies="JSESSIONID"/>-->
-        <!--<security:remember-me key="uniqueAndSecret" user-service-ref="customUserDetailsService"/>-->
-    <!--</security:http>-->
+    <security:http auto-config="true" use-expressions="true">
 
-    <!--<security:authentication-manager>-->
-        <!--<security:authentication-provider user-service-ref="customUserDetailsService">-->
-            <!--<security:password-encoder hash="md5"/>-->
-        <!--</security:authentication-provider>-->
-    <!--</security:authentication-manager>-->
+        <security:intercept-url pattern="/register" access="permitAll"/>
+        <security:intercept-url pattern="/" access="hasRole('ROLE_ADMIN')"/>
+
+        <security:form-login login-page="/login"
+                             default-target-url="/"
+                             authentication-failure-url="/login?error=true"/>
+        <security:logout logout-success-url="/login"
+                         logout-url="/logout"
+                         delete-cookies="JSESSIONID"
+                         invalidate-session="true" />
+
+        <!--<security:remember-me key="uniqueAndSecret" user-service-ref="customUserDetailsService"/>-->
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="customUserDetailsService">
+            <security:password-encoder ref="password_encoder"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
 
 </beans>

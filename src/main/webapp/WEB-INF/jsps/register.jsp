@@ -38,6 +38,7 @@
                             <input type="submit" value="Register me!" class="btn btn-lg btn-success btn-block" />
                         </fieldset>
                     </form:form>
+                    Already have an account? <a href="<c:url value="/login" />">Login</a>
                 </div>
             </div>
         </div>

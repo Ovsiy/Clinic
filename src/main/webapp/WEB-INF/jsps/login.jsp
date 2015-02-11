@@ -19,7 +19,9 @@
             <form action="j_spring_security_check" method="post" role = "form">
                 <fieldset>
                     <div class="form-group">
+                        <p class="text-danger">
                         ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                        </p>
                     </div>
                     <div class="form-group">
                         <label for="j_username">Username</label>
@@ -34,10 +36,10 @@
                     <input type="submit" value="Login" class="btn btn-lg btn-success btn-block" />
                 </fieldset>
             </form>
+            No account? <a href="<c:url value="/register" />">Register</a>
         </div>
         </div>
     </div>
-
 
 </div>
 

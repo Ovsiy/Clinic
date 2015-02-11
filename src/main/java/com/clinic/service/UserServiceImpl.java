@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRoles.add(new UserRole(user, UserRole.ROLE_USER));
 
         user.setUserRole(userRoles);
-        System.out.println(user.getUserRole());
 
         this.userDAO.addUser(user);
     }

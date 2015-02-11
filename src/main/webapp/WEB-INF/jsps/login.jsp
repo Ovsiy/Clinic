@@ -9,7 +9,7 @@
 <tiles:putAttribute name="body">
 
 <div class="row">
-        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+
     <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-default">
             <div class="panel-heading">
@@ -19,13 +19,16 @@
             <form action="j_spring_security_check" method="post" role = "form">
                 <fieldset>
                     <div class="form-group">
+                        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                    </div>
+                    <div class="form-group">
                         <label for="j_username">Username</label>
-                        <input id="j_username" name="j_username" type="text" />
+                        <input id="j_username" name="j_username" type="text" class="form-control"/>
                     </div>
 
                     <div class="form-group">
                         <label for="j_password">Password</label>
-                        <input id="j_password" name="j_password" type="password" />
+                        <input id="j_password" name="j_password" type="password" class="form-control"/>
                     </div>
 
                     <input type="submit" value="Login" class="btn btn-lg btn-success btn-block" />

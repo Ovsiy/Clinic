@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.print.Doc;
 import javax.validation.Valid;
 
 @Controller
@@ -23,10 +22,10 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView indexPage() {
+    @RequestMapping(value = "/doctors", method = RequestMethod.GET)
+    public ModelAndView listDoctors() {
 
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("doctor/listDoctors");
         mav.addObject("listDoctors", this.doctorService.listDoctors());
 
         return mav;
@@ -34,7 +33,8 @@ public class DoctorController {
 
     @RequestMapping(value = "/doctor/{id}/show", method = RequestMethod.GET)
     public ModelAndView viewDoctor(@PathVariable("id") int id) {
-        ModelAndView mav = new ModelAndView("showDoctor");
+        ModelAndView mav = new ModelAndView("doctor/showDoctor");
+
         mav.addObject("doctor", this.doctorService.getDoctorById(id));
 
         return mav;
@@ -44,7 +44,7 @@ public class DoctorController {
     public ModelAndView addDoctor(Model model) {
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/addDoctor");
+        mav.setViewName("doctor/addDoctor");
 
         model.addAttribute("doctor", new Doctor());
 
@@ -56,7 +56,7 @@ public class DoctorController {
                             BindingResult bindingResult, final RedirectAttributes redirectAttributes){
 
         if(bindingResult.hasErrors()) {
-            return "addDoctor";
+            return "doctor/addDoctor";
         }
 
         if(doctor.getId() == 0){
@@ -64,7 +64,7 @@ public class DoctorController {
                 this.doctorService.addDoctor(doctor);
             } catch (DublicateEmailException e) {
                 bindingResult.rejectValue("profile.email", "", e.getMessage());
-                return "addDoctor";
+                return "doctor/addDoctor";
             }
 
             redirectAttributes.addFlashAttribute("message", "The doctor has been successfully created");
@@ -73,22 +73,22 @@ public class DoctorController {
             redirectAttributes.addFlashAttribute("message", "The doctor has been successfully updated");
         }
 
-        return "redirect:/";
+        return "redirect:/doctors";
     }
 
     @RequestMapping(value = "/doctor/{id}/edit", method = RequestMethod.GET)
     public ModelAndView editDoctor(Model model, @PathVariable("id") int id) {
-        ModelAndView mav = new ModelAndView("addDoctor");
+        ModelAndView mav = new ModelAndView("doctor/addDoctor");
         model.addAttribute("doctor", this.doctorService.getDoctorById(id));
 
         return mav;
     }
 
     @RequestMapping(value = "/doctor/{id}/remove")
-    public String removePerson(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
+    public String removeDoctor(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
         this.doctorService.removeDoctor(id);
         redirectAttributes.addFlashAttribute("message", "The doctor has been successfully deleted");
 
-        return "redirect:/";
+        return "redirect:/doctors";
     }
 }

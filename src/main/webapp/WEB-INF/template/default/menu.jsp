@@ -34,7 +34,10 @@
                     <a href="<c:url value='/' />" >Index</a>
                 </li>
                 <li>
-                    <a href="<c:url value='/' />" >Doctors</a>
+                    <a href="<c:url value='/doctors' />" >Doctors</a>
+                </li>
+                <li>
+                    <a href="<c:url value='/patients' />" >Patients</a>
                 </li>
                 <%--<li>--%>
                     <%--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>--%>

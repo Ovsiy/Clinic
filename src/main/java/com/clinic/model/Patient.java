@@ -2,12 +2,10 @@ package com.clinic.model;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "Doctor")
-public class Doctor {
+@Table(name = "Patient")
+public class Patient {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,8 +16,17 @@ public class Doctor {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
-    private Set<Patient> patients = new HashSet<Patient>(0);
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private Doctor doctor;
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 
     public int getId() {
         return id;
@@ -35,17 +42,5 @@ public class Doctor {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
-    }
-
-    public Set<Patient> getPatients() {
-        return patients;
-    }
-
-    public void setPatients(Set<Patient> patients) {
-        this.patients = patients;
-    }
-
-    public String getFullName() {
-        return "Dr. " + this.profile.getName() + " " + this.profile.getSurname();
     }
 }

@@ -1,7 +1,6 @@
 package com.clinic.dao;
 
 import com.clinic.model.Doctor;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -14,7 +13,6 @@ public class DoctorDAOImpl implements DoctorDAO {
 //    We could use session factory, but than can't use pre-persist, pre-update'
 //    @Autowired
 //    private SessionFactory sessionFactory;
-
 
     @PersistenceContext
     private EntityManager entityManager;

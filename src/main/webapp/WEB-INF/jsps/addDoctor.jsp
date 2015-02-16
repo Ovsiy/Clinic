@@ -20,33 +20,34 @@
                 <div class="row">
                     <form:form action="/doctor/add" commandName="doctor" role="form">
                         <div class="col-lg-6">
-                            <c:if test="${!empty doctor.name}">
-                                <form:label path="id">ID</form:label>
-                                <form:input path="id" readonly="true" disabled="true" />
+                            <c:if test="${!empty doctor.profile.name}">
+                                <%--<form:label path="id">ID</form:label>--%>
+                                <%--<form:input path="id" readonly="true" disabled="true"  />--%>
                                 <form:hidden path="id" />
+                                <form:hidden path="profile.id" />
                             </c:if>
                             <div class="form-group">
-                                <c:set var="nameErrors"><form:errors path="name"/></c:set>
-                                <form:label path="name">Name</form:label>
-                                <form:input path="name" cssClass="form-control" />
+                                <c:set var="nameErrors"><form:errors path="profile.name"/></c:set>
+                                <form:label path="profile.name">Name</form:label>
+                                <form:input path="profile.name" cssClass="form-control" />
                             </div>
 
                             <div class="form-group">
-                                <c:set var="surnameErrors"><form:errors path="surname"/></c:set>
-                                <form:label path="surname">Surname</form:label>
-                                <form:input path="surname" cssClass="form-control" />
+                                <c:set var="surnameErrors"><form:errors path="profile.surname"/></c:set>
+                                <form:label path="profile.surname">Surname</form:label>
+                                <form:input path="profile.surname" cssClass="form-control" />
                             </div>
 
                             <div class="form-group">
-                                <c:set var="phoneErrors"><form:errors path="phone"/></c:set>
-                                <form:label path="phone">Phone</form:label>
-                                <form:input path="phone" cssClass="form-control" />
+                                <c:set var="phoneErrors"><form:errors path="profile.phone"/></c:set>
+                                <form:label path="profile.phone">Phone</form:label>
+                                <form:input path="profile.phone" cssClass="form-control" />
                             </div>
 
                             <div class="form-group">
-                                <c:set var="emailErrors"><form:errors path="email"/></c:set>
-                                <form:label path="email">Email</form:label>
-                                <form:input path="email" cssClass="form-control" />
+                                <c:set var="emailErrors"><form:errors path="profile.email"/></c:set>
+                                <form:label path="profile.email">Email</form:label>
+                                <form:input path="profile.email" cssClass="form-control" />
                             </div>
 
                             <input type="submit" value="<spring:message text="Add Doctor"/>" />

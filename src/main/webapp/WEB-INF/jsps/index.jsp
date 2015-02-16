@@ -49,13 +49,13 @@
                         <c:forEach items="${listDoctors}" var="doctor">
                         <tr>
                             <td>${doctor.id}</td>
-                            <td><a href="<c:url value='/doctor/${doctor.id}/show' />" >${doctor.name}</a></td>
-                            <td>${doctor.surname}</td>
-                            <td>${doctor.email}</td>
+                            <td><a href="<c:url value='/doctor/${doctor.id}/show' />" >${doctor.profile.name}</a></td>
+                            <td>${doctor.profile.surname}</td>
+                            <td>${doctor.profile.email}</td>
                             <td><fmt:formatDate pattern="yyyy-MM-dd H:m"
-                                                value="${doctor.created_at}" /></td>
+                                                value="${doctor.profile.created_at}" /></td>
                             <td><fmt:formatDate pattern="yyyy-MM-dd H:m"
-                                                value="${doctor.updated_at}" /></td>
+                                                value="${doctor.profile.updated_at}" /></td>
                             <td><a href="<c:url value='/doctor/${doctor.id}/edit' />" >Edit</a></td>
                             <td><a href="<c:url value='/doctor/${doctor.id}/remove' />" >Delete</a></td>
                         </tr>

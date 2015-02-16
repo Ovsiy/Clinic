@@ -45,7 +45,7 @@ public class DoctorDAOImpl implements DoctorDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<Doctor> listDoctors() {
-        List<Doctor> doctorsList = this.entityManager.createQuery("SELECT doc FROM Doctor doc ORDER BY doc.name").getResultList();
+        List<Doctor> doctorsList = this.entityManager.createQuery("SELECT doc FROM Doctor doc ORDER BY doc.profile.name").getResultList();
 
         return doctorsList;
     }

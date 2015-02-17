@@ -14,7 +14,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Add Patient
+                        <spring:message code="addPatient"/>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -26,42 +26,42 @@
                                     </c:if>
                                     <div class="form-group">
                                         <c:set var="nameErrors"><form:errors path="profile.name"/></c:set>
-                                        <form:label path="profile.name">Name</form:label>
+                                        <form:label path="profile.name"><spring:message code="name"/></form:label>
                                         <form:input path="profile.name" cssClass="form-control" />
                                     </div>
 
                                     <div class="form-group">
                                         <c:set var="surnameErrors"><form:errors path="profile.surname"/></c:set>
-                                        <form:label path="profile.surname">Surname</form:label>
+                                        <form:label path="profile.surname"><spring:message code="surname"/></form:label>
                                         <form:input path="profile.surname" cssClass="form-control" />
                                     </div>
 
                                     <div class="form-group">
                                         <c:set var="phoneErrors"><form:errors path="profile.phone"/></c:set>
-                                        <form:label path="profile.phone">Phone</form:label>
+                                        <form:label path="profile.phone"><spring:message code="phone"/></form:label>
                                         <form:input path="profile.phone" cssClass="form-control" />
                                     </div>
 
                                     <div class="form-group">
                                         <c:set var="emailErrors"><form:errors path="profile.email"/></c:set>
-                                        <form:label path="profile.email">Email</form:label>
+                                        <form:label path="profile.email"><spring:message code="email"/></form:label>
                                         <form:input path="profile.email" cssClass="form-control" />
                                     </div>
 
                                     <div class="form-group">
-                                    <form:label path="doctor.id">Doctor</form:label>
+                                    <form:label path="doctor.id"><spring:message code="doctor"/></form:label>
                                     <form:select path="doctor.id" cssClass="form-control">
                                         <form:option value="0" label="--Select doctor--" />
                                         <form:options items="${doctors}" itemValue="id" itemLabel="FullName"/>
                                     </form:select>
                                     </div>
 
-                                    <input type="submit" value="<spring:message text="Add Patient"/>" />
+                                    <input type="submit" value="<spring:message code="addPatient"/>" />
                                 </div>
                                 <div class="col-lg-6">
                                     <c:set var="errors"><form:errors path="*"/></c:set>
                                     <c:if test="${not empty errors}">
-                                        <h1>Oops, we have some errors</h1>
+                                        <h1><spring:message code="we_have_some_errors"/></h1>
                                         <div class="alert alert-danger">
                                                 ${errors}
                                         </div>

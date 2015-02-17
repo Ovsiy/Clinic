@@ -12,33 +12,33 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Registration Form</h3>
+                    <h3 class="panel-title"><spring:message code="registrationForm"/></h3>
                 </div>
                 <div class="panel-body">
                     <form:form action="/register" commandName="user" role="form">
                         <fieldset>
                             <div class="form-group">
-                                <form:label path="email">Email</form:label>
+                                <form:label path="email"><spring:message code="email"/></form:label>
                                 <form:input cssClass="form-control" path="email" />
                                 <form:errors path="email" cssClass="text-danger" />
                             </div>
 
                             <div class="form-group">
-                                <form:label path="password">Password</form:label>
+                                <form:label path="password"><spring:message code="password"/></form:label>
                                 <form:password cssClass="form-control" path="password" />
                                 <form:errors path="password" cssClass="text-danger" />
                             </div>
 
                             <div class="form-group">
-                                <form:label path="password_again">Password again</form:label>
+                                <form:label path="password_again"><spring:message code="passwordAgain"/></form:label>
                                 <form:password cssClass="form-control" path="password_again" />
                                 <form:errors cssClass="text-danger" />
                             </div>
 
-                            <input type="submit" value="Register me!" class="btn btn-lg btn-success btn-block" />
+                            <input type="submit" value="<spring:message code="registerMe"/>" class="btn btn-lg btn-success btn-block" />
                         </fieldset>
                     </form:form>
-                    Already have an account? <a href="<c:url value="/login" />">Login</a>
+                    <spring:message code="already_have_an_account?"/> <a href="<c:url value="/login" />"><spring:message code="login"/></a>
                 </div>
             </div>
         </div>

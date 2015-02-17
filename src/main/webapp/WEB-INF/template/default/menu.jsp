@@ -31,13 +31,13 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav in" id="side-menu">
                 <li>
-                    <a href="<c:url value='/' />" >Index</a>
+                    <a href="<c:url value='/' />" ><spring:message code="indexPage"/></a>
                 </li>
                 <li>
-                    <a href="<c:url value='/doctors' />" >Doctors</a>
+                    <a href="<c:url value='/doctors' />" ><spring:message code="doctors"/></a>
                 </li>
                 <li>
-                    <a href="<c:url value='/patients' />" >Patients</a>
+                    <a href="<c:url value='/patients' />" ><spring:message code="patients"/></a>
                 </li>
                 <%--<li>--%>
                     <%--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>--%>

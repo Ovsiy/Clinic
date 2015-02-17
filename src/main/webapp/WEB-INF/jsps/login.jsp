@@ -13,7 +13,7 @@
     <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Login Form</h3>
+                <h3 class="panel-title"><spring:message code="loginForm"/></h3>
             </div>
             <div class="panel-body">
             <form action="j_spring_security_check" method="post" role = "form">
@@ -24,19 +24,19 @@
                         </p>
                     </div>
                     <div class="form-group">
-                        <label for="j_username">Username</label>
+                        <label for="j_username"><spring:message code="email"/></label>
                         <input id="j_username" name="j_username" type="text" class="form-control"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="j_password">Password</label>
+                        <label for="j_password"><spring:message code="password"/></label>
                         <input id="j_password" name="j_password" type="password" class="form-control"/>
                     </div>
 
-                    <input type="submit" value="Login" class="btn btn-lg btn-success btn-block" />
+                    <input type="submit" value="<spring:message code="login"/>" class="btn btn-lg btn-success btn-block" />
                 </fieldset>
             </form>
-            No account? <a href="<c:url value="/register" />">Register</a>
+                <spring:message code="no_account?"/> <a href="<c:url value="/register" />"><spring:message code="register"/></a>
         </div>
         </div>
     </div>

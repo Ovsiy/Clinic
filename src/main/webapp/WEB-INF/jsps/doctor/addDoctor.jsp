@@ -14,7 +14,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Add Doctor
+                <spring:message code="addDoctor"/>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -28,25 +28,25 @@
                             </c:if>
                             <div class="form-group">
                                 <c:set var="nameErrors"><form:errors path="profile.name"/></c:set>
-                                <form:label path="profile.name">Name</form:label>
+                                <form:label path="profile.name"><spring:message code="name"/></form:label>
                                 <form:input path="profile.name" cssClass="form-control" />
                             </div>
 
                             <div class="form-group">
                                 <c:set var="surnameErrors"><form:errors path="profile.surname"/></c:set>
-                                <form:label path="profile.surname">Surname</form:label>
+                                <form:label path="profile.surname"><spring:message code="surname"/></form:label>
                                 <form:input path="profile.surname" cssClass="form-control" />
                             </div>
 
                             <div class="form-group">
                                 <c:set var="phoneErrors"><form:errors path="profile.phone"/></c:set>
-                                <form:label path="profile.phone">Phone</form:label>
+                                <form:label path="profile.phone"><spring:message code="phone"/></form:label>
                                 <form:input path="profile.phone" cssClass="form-control" />
                             </div>
 
                             <div class="form-group">
                                 <c:set var="emailErrors"><form:errors path="profile.email"/></c:set>
-                                <form:label path="profile.email">Email</form:label>
+                                <form:label path="profile.email"><spring:message code="email"/></form:label>
                                 <form:input path="profile.email" cssClass="form-control" />
                             </div>
 

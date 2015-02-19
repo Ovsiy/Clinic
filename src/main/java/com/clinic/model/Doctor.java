@@ -48,4 +48,13 @@ public class Doctor {
     public String getFullName() {
         return "Dr. " + this.profile.getName() + " " + this.profile.getSurname();
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", profile=" + profile.toString() +
+                ", patients=" + patients +
+                '}';
+    }
 }

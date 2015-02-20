@@ -32,22 +32,6 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
-    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
-    <!--<property name="dataSource" ref="dataSourse"/>-->
-    <!--<property name="packagesToScan" value="com.clinic.model"/>-->
-    <!--<property name="hibernateProperties">-->
-    <!--<props>-->
-    <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-    <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
-    <!--<prop key="hibernate.show_sql">true</prop>-->
-    <!--</props>-->
-    <!--</property>-->
-    <!--</bean>-->
-
-    <!--<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-    <!--<property name="dataSource" ref="dataSourse"/>-->
-    <!--</bean>-->
-
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
 

@@ -1,9 +1,14 @@
 package com.clinic;
 
+import com.clinic.event.RegistrationEventPublisher;
+import com.clinic.event.RegistrationFinishedEvent;
 import com.clinic.forms.RegistrationForm;
+import com.clinic.listener.RegistrationEventListener;
 import com.clinic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,6 +42,9 @@ public class RegistrationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private RegistrationEventPublisher publisher;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView indexPage(Model model) {
 
@@ -56,7 +64,11 @@ public class RegistrationController {
         }
 
         this.userService.addUser(user);
+
+        this.publisher.publish();
+
         this.forceLoginUser(user, request);
+
         redirectAttributes.addFlashAttribute("message", "Welcome, " + user.getEmail());
 
         return "redirect:/";

@@ -1,45 +1,31 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-    <import resource="database-config.xml"/>
-
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.clinic"/>
+    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <context:component-scan base-package="com.clinic.controller"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsps/"/>
+        <property name="prefix" value="/WEB-INF/jsps/doctor/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>
-
-    <bean id="tilesConfigurer"
-          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles/tiles-definitions.xml</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="localeResolver"
-          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
     </bean>
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages" />
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+
+    <bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager"/>
 
     <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
         <!--<property name="dataSource" ref="dataSourse"/>-->
@@ -52,27 +38,6 @@
             <!--</props>-->
         <!--</property>-->
     <!--</bean>-->
-
-    <!--<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSourse"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager"-->
-          <!--p:entityManagerFactory-ref="entityManagerFactory"/>-->
-
-    <!--<tx:annotation-driven transaction-manager="txManager"/>-->
-
-    <bean id="customUserDetailsService" class="com.clinic.service.UserServiceImpl"/>
-
-    <bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager"/>
-
-    <bean id="password_encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-
-    <!--<bean class="com.clinic.event.RegistrationEventPublisher" />-->
-
-    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
-
-    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
     <!--<security:remember-me key="uniqueAndSecret" user-service-ref="customUserDetailsService"/>-->
 </beans>

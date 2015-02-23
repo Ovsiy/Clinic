@@ -1,14 +1,10 @@
-package com.clinic;
+package com.clinic.controller;
 
 import com.clinic.event.RegistrationEventPublisher;
-import com.clinic.event.RegistrationFinishedEvent;
 import com.clinic.forms.RegistrationForm;
-import com.clinic.listener.RegistrationEventListener;
 import com.clinic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

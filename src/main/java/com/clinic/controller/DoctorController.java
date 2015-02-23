@@ -1,4 +1,4 @@
-package com.clinic;
+package com.clinic.controller;
 
 import com.clinic.exceptions.DublicateEmailException;
 import com.clinic.model.Doctor;

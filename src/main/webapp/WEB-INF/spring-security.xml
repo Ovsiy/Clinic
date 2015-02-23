@@ -24,6 +24,10 @@
                 invalidate-session="true"/>
     </http>
 
+    <beans:bean id="password_encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <beans:bean id="customUserDetailsService" class="com.clinic.service.UserServiceImpl"/>
+
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="customUserDetailsService" >
             <password-encoder ref="password_encoder" />

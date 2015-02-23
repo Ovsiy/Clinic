@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-//@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired

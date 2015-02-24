@@ -6,6 +6,5 @@ public class RegistrationFinishedEvent extends ApplicationEvent {
 
     public RegistrationFinishedEvent(Object source) {
         super(source);
-        System.out.println("event yes");
     }
 }

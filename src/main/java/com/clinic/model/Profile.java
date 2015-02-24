@@ -32,10 +32,10 @@ public class Profile {
     @Phone
     private String phone;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = true, updatable = false)
     private Date created_at;
 
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", insertable = false, updatable = true)
     private Date updated_at;
 
     @OneToOne
@@ -102,7 +102,7 @@ public class Profile {
     @PrePersist
     public void prepersist() {
         this.created_at = new Date();
-        this.updated_at = new Date();
+//        this.updated_at = new Date();
     }
 
     @PreUpdate

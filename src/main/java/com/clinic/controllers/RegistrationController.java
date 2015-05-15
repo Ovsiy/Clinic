@@ -1,4 +1,4 @@
-package com.clinic.controller;
+package com.clinic.controllers;
 
 import com.clinic.event.RegistrationEventPublisher;
 import com.clinic.forms.RegistrationForm;

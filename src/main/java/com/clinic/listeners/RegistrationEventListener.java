@@ -1,4 +1,4 @@
-package com.clinic.listener;
+package com.clinic.listeners;
 
 import com.clinic.event.RegistrationFinishedEvent;
 import org.springframework.beans.factory.annotation.Autowired;

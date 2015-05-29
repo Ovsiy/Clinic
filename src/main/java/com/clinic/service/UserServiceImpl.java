@@ -34,6 +34,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPassword(password_encoder.encode(userForm.getPassword()));
         user.setEnabled(true);
 
+        System.out.println("fuck you");
+
         Set<UserRole> userRoles = new HashSet<UserRole>();
         userRoles.add(new UserRole(user, UserRole.ROLE_ADMIN));
         userRoles.add(new UserRole(user, UserRole.ROLE_USER));
